@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color flipper</title>
+    <style>
+        section{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 100px auto;
+            width: 50%;
+            background-color: #ffffff;
+            box-shadow: 0 0 30px rgba(0, 0,0, 0.5);
+            padding: 4rem;
+            border-radius: .5rem;
+        }
+        h1{
+            font-weight: 900;
+        }
+        button{
+            width: 100%;
+            background-color: black;
+            color: #ffffff;
+            padding: 1rem;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section id="clour-display">
+        <h1>
+            background: <span id="current-colour">#ffffff</span>
+        </h1>
+        <button id="new-color-button">New Color</button>
+    </section>
+    <script>
+        const newColorBtn = document.getElementById('new-color-button')
+
+        const currentColor = document.getElementById('current-colour')
+
+        const hexValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
+        function getRandomHexValue(){
+            const randomIndexPosition = Math.floor(Math.random()*hexValues.length)
+            const RandomHexValue = hexValues[randomIndexPosition]
+            return RandomHexValue
+        }
+        function getRandomHexString (stringLength){
+            let hexstring = ''
+            for(let i = 0; i<stringLength; i++){
+                hexstring += getRandomHexValue()
+            }
+            return hexstring
+        }
+        newColorBtn.addEventListener('click', ()=>{
+            const RandomHexString = '#' + getRandomHexString(6)
+
+            document.body.style.setProperty(
+                'background-color',
+                RandomHexString
+            )
+            currentColor.textContent = RandomHexString
+        })
+    </script>
+</body>
+</html>
